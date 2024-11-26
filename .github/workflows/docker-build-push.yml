@@ -41,9 +41,8 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/my-server:latest
-            ${{ secrets.DOCKER_USERNAME }}/my-server:${{ github.sha }}
           context: ./challenge-1
       
       - name: Analyze image with Dive
         run: |
-          dive ${{ secrets.DOCKER_USERNAME }}/my-server:${{ github.sha }} --ci
+          dive ${{ secrets.DOCKER_USERNAME }}/my-server:latest --ci --ci-config ./challenge-1/.dive-ci
