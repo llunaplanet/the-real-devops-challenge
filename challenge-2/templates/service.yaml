@@ -1,0 +1,13 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-my-server
+spec:
+  type: {{ .Values.serviceType }}
+  selector:
+    app: my-server
+  ports:
+  - protocol: TCP
+    port: {{ .Values.servicePort }}
+    targetPort: {{ .Values.servicePort }}

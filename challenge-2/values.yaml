@@ -1,0 +1,10 @@
+
+replicaCount: 2
+
+imageRepository: davidlluna/my-server
+imageTag: latest
+
+serviceType: ClusterIP
+servicePort: 8000
+
+ingressHost: 127.0.0.1.nip.io

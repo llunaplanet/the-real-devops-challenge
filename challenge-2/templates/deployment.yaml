@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-my-server
+  labels:
+    app: my-server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: my-server
+  template:
+    metadata:
+      labels:
+        app: my-server
+    spec:
+      containers:
+      - name: my-server
+        image: "{{ .Values.imageRepository }}:{{ .Values.imageTag }}"
+        ports:
+        - containerPort: {{ .Values.servicePort }}
