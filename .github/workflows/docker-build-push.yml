@@ -35,10 +35,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Analyze image with Dive
-        run: |
-          dive ${{ secrets.DOCKER_USERNAME }}/my-server:latest --ci
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
@@ -47,3 +43,7 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/my-server:latest
             ${{ secrets.DOCKER_USERNAME }}/my-server:${{ github.sha }}
           context: ./challenge-1
+      
+      - name: Analyze image with Dive
+        run: |
+          dive ${{ secrets.DOCKER_USERNAME }}/my-server:${{ github.sha }} --ci
