@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "required": [
+      "replicaCount",
+      "imageRepository",
+      "imageTag",
+      "serviceType",
+      "servicePort",
+      "ingressHost"
+  ],
+  "properties": {
+      "replicaCount": {
+          "type": "integer",
+          "default": 1,
+          "title": "Number of replicas for the deployment"
+      },
+      "imageRepository": {
+          "type": "string",
+          "default": "",
+          "title": "Docker image repository"
+      },
+      "imageTag": {
+          "type": "string",
+          "default": "",
+          "title": "Docker image tag"
+      },
+      "serviceType": {
+          "type": "string",
+          "default": "",
+          "title": "Type of Kubernetes service",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer"]
+      },
+      "servicePort": {
+          "type": "integer",
+          "default": 8000,
+          "title": "Port for the Kubernetes service"
+      },
+      "ingressHost": {
+          "type": "string",
+          "default": "",
+          "title": "Host for the ingress resource"
+      }
+  },
+  "examples": [{
+      "replicaCount": 2,
+      "imageRepository": "davidlluna/my-server",
+      "imageTag": "latest",
+      "serviceType": "ClusterIP",
+      "servicePort": 8000,
+      "ingressHost": "127.0.0.1.nip.io"
+  }]
+}

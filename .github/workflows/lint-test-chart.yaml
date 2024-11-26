@@ -35,3 +35,6 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install --charts challenge-2
+
+      - name: Validate values.yaml schema
+        run: helm lint -f challenge-2/values.yaml ./challenge-2
