@@ -1,13 +1,15 @@
-FROM python:3.10-slim
+FROM alpine:3.10.1
+
+RUN apk add --no-cache \
+    python3=3.7.10-r0
 
 WORKDIR /app
 
-RUN useradd -m appuser
+RUN addgroup appuser && \
+    adduser --disabled-password --gecos "" --ingroup appuser appuser
 
 COPY . /app
-RUN chown -R appuser:appuser /app
 
 USER appuser
-
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python3", "main.py"]
 CMD ["--port", "8000"]
